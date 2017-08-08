@@ -1,13 +1,10 @@
 // Main Javascript Application for Twittler
 // Kenny Cao
 
+var visitor = 'kennycao';
+
 $(document).ready(function() {
   var $body = $('#tweet-streams');
-
-  // var $body = $('body');
-  // $body.html('');
-
-  // var index = streams.home.length - 1;
 
   function populate() {
     var index = streams.home.length - 1;
@@ -38,7 +35,7 @@ $(document).ready(function() {
     // event.preventDefault();
     $('.tweet-cell').remove();
     populate();
-  })
+  });
 
   // User Name Click Action - filter tweets by user
   $('#tweet-streams').on('click', 'a', function(event) {
@@ -55,6 +52,14 @@ $(document).ready(function() {
   $('#current-view').on('click', '#all-tweets', function() {
     $('#current-view p').remove();
     $('#current-view').append('<p>All Tweets</p>');
+    populate();
+  });
+
+  // Submit a tweet by user using form
+  $('#tweet-submit').on('submit', function(event) {
+    event.preventDefault();
+    writeTweet($('#visitor-tweet').val());
+    $('.tweet-cell').remove();
     populate();
   });
 
